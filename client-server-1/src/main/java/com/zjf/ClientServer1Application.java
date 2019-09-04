@@ -1,11 +1,13 @@
 package com.zjf;
 
+import com.zjf.common.cecurity.annotation.EnableZjfResourceServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @author Harry
  */
+@EnableZjfResourceServer
 @SpringBootApplication
 public class ClientServer1Application {
 

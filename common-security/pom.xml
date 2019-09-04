@@ -8,9 +8,9 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>com.zjf</groupId>
-	<artifactId>client-server-1</artifactId>
+	<artifactId>common-security</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>client-server-1</name>
+	<name>common-security</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -37,33 +37,10 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.zjf</groupId>
-			<artifactId>common-security</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<!-- Only needed at compile time -->
-			<scope>compile</scope>
-			<optional>true</optional>
-		</dependency>
-
-
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>

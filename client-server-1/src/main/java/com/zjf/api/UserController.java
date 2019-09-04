@@ -1,6 +1,7 @@
 package com.zjf.api;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,14 @@ public class UserController {
         userInfo.setEmail(email);
 
         return ResponseEntity.ok(userInfo);
+    }
+
+    @RequestMapping("/api/user")
+    public ResponseEntity<Authentication> getUser() {
+        Authentication authentication = SecurityContextHolder.getContext()
+                .getAuthentication();
+
+        return ResponseEntity.ok(authentication);
     }
 
 }

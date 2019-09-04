@@ -1,7 +1,7 @@
 package com.zjf.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,8 +12,6 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 
-import javax.sql.DataSource;
-
 /**
  * @Description oauth2适配器相关配置
  * @Author Harry
@@ -21,21 +19,22 @@ import javax.sql.DataSource;
  **/
 @EnableAuthorizationServer
 @Configuration
+@AllArgsConstructor
 public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter{
 
     /**
      * 密码加密方式
      */
-    @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
     /**
      * 用户认证
      */
-    @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Autowired
+    /**
+     * 数据源
+     */
     private DruidDataSource druidDataSource;
 
     @Override
