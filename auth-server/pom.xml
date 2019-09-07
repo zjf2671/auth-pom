@@ -33,8 +33,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-oauth2</artifactId>
+			<groupId>com.zjf</groupId>
+			<artifactId>common-security</artifactId>
 		</dependency>
 
 		<dependency>
