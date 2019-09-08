@@ -44,4 +44,9 @@ public class UserController {
         return ResponseEntity.ok(authentication);
     }
 
+    @RequestMapping("/message")
+    public ResponseEntity<String> getMessage() {
+        return ResponseEntity.ok("无需鉴权URL通过");
+    }
+
 }

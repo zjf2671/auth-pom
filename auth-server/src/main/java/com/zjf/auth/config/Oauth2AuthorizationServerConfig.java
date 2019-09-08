@@ -59,7 +59,7 @@ public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigur
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.authenticationManager(authenticationManager)
                 .tokenStore(tokenStore())
-//                .tokenEnhancer(tokenEnhancer())
+                .tokenEnhancer(tokenEnhancer())
                 .userDetailsService(userDetailsService);
     }
 
@@ -78,19 +78,19 @@ public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigur
      * 对token内容进行增强
      * @return
      */
-//    @Bean
-//    public TokenEnhancer tokenEnhancer() {
-//        return (accessToken, authentication) -> {
-//            final Map<String, Object> additionalInfo = new HashMap<>(1);
-//            AuthUser authUser = (AuthUser) authentication.getUserAuthentication().getPrincipal();
-//            additionalInfo.put(SecurityConstants.DETAILS_LICENSE, SecurityConstants.PROJECT_LICENSE);
-//            additionalInfo.put(SecurityConstants.DETAILS_USER_ID, authUser.getId());
-//            additionalInfo.put(SecurityConstants.DETAILS_USERNAME, authUser.getUsername());
-//            additionalInfo.put(SecurityConstants.DETAILS_DEPT_ID, authUser.getDeptId());
-//            ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
-//            return accessToken;
-//        };
-//    }
+    @Bean
+    public TokenEnhancer tokenEnhancer() {
+        return (accessToken, authentication) -> {
+            final Map<String, Object> additionalInfo = new HashMap<>(1);
+            AuthUser authUser = (AuthUser) authentication.getUserAuthentication().getPrincipal();
+            additionalInfo.put(SecurityConstants.DETAILS_LICENSE, SecurityConstants.PROJECT_LICENSE);
+            additionalInfo.put(SecurityConstants.DETAILS_USER_ID, authUser.getId());
+            additionalInfo.put(SecurityConstants.DETAILS_USERNAME, authUser.getUsername());
+            additionalInfo.put(SecurityConstants.DETAILS_DEPT_ID, authUser.getDeptId());
+            ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
+            return accessToken;
+        };
+    }
 
     @Bean
     public TokenStore tokenStore() {
