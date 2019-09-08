@@ -1,4 +1,4 @@
-package com.zjf.common.security.constant;
+package com.zjf.common.core.constant;
 
 /**
  * @author Harry

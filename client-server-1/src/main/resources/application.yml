@@ -5,3 +5,10 @@ server:
 spring:
   application:
     name: client1-server
+
+# 直接放行URL
+ignore:
+  urls:
+    - /actuator/**
+    - /user/info/*
+    - /log/**

@@ -2,7 +2,7 @@ package com.zjf.common.security.util;
 
 
 import cn.hutool.core.util.StrUtil;
-import com.zjf.common.security.constant.SecurityConstants;
+import com.zjf.common.core.constant.SecurityConstants;
 import com.zjf.common.security.service.AuthUser;
 import lombok.experimental.UtilityClass;
 import org.springframework.security.core.Authentication;

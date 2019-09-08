@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.zjf.common.core.config.FilterIgnorePropertiesConfig,\
+  com.zjf.common.core.config.RestTemplateConfig

@@ -1,6 +1,6 @@
 package com.zjf.common.security.component;
 
-import com.zjf.common.security.constant.SecurityConstants;
+import com.zjf.common.core.constant.SecurityConstants;
 import com.zjf.common.security.service.AuthUser;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

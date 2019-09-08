@@ -1,12 +1,11 @@
 package com.zjf.common.security.component;
 
-import com.zjf.common.security.constant.SecurityConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 import org.springframework.core.type.AnnotationMetadata;
-
+import com.zjf.common.core.constant.SecurityConstants;
 /**
  * @Author Harry
  * @Date 2019/9/6 13:10

@@ -19,18 +19,29 @@
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
 		<security.oauth.version>2.3.6.RELEASE</security.oauth.version>
-		<mybatis-plus-boot-starter.version>3.0.6</mybatis-plus-boot-starter.version>
+		<mybatis-plus.version>3.0.6</mybatis-plus.version>
 		<druid.version>1.1.9</druid.version>
 		<mysql.version>5.1.38</mysql.version>
 		<fastjson.version>1.2.47</fastjson.version>
 		<hutool.version>4.6.3</hutool.version>
-		<common-security-version>0.0.1-SNAPSHOT</common-security-version>
+		<common-security.version>0.0.1-SNAPSHOT</common-security.version>
+		<common-core.version>0.0.1-SNAPSHOT</common-core.version>
 	</properties>
+
 	<modules>
 		<module>auth-server</module>
 		<module>client-server-1</module>
 		<module>zjf-common</module>
 	</modules>
+
+	<dependencies>
+		<!--Lombok-->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 
 	<dependencyManagement>
 		<dependencies>
@@ -46,17 +57,22 @@
 				<artifactId>spring-security-oauth2</artifactId>
 				<version>${security.oauth.version}</version>
 			</dependency>
-
+			<!--核心包-->
 			<dependency>
 				<groupId>com.zjf</groupId>
 				<artifactId>common-security</artifactId>
-				<version>${common-security-version}</version>
+				<version>${common-security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.zjf</groupId>
+				<artifactId>common-core</artifactId>
+				<version>${common-core.version}</version>
 			</dependency>
 			<!--mybatisPlus 三方包导入-->
 			<dependency>
 				<groupId>com.baomidou</groupId>
 				<artifactId>mybatis-plus-boot-starter</artifactId>
-				<version>${mybatis-plus-boot-starter.version}</version>
+				<version>${mybatis-plus.version}</version>
 			</dependency>
 
 			<dependency>

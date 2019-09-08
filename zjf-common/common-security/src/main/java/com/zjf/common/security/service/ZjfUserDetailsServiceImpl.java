@@ -1,6 +1,6 @@
 package com.zjf.common.security.service;
 
-import com.zjf.common.security.constant.SecurityConstants;
+import com.zjf.common.core.constant.SecurityConstants;
 import lombok.SneakyThrows;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;

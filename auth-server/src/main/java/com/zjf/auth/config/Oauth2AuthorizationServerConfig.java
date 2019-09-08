@@ -1,7 +1,7 @@
 package com.zjf.auth.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.zjf.common.security.constant.SecurityConstants;
+import com.zjf.common.core.constant.SecurityConstants;
 import com.zjf.common.security.service.AuthUser;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
