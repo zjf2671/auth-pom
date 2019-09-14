@@ -49,5 +49,10 @@ public interface SecurityConstants {
 	 */
 	String PROJECT_LICENSE = "made by zjf";
 
+	/**
+	 * jwt signing key
+	 */
+	String JWT_SIGNING_KEY = "harryKey";
+
 
 }

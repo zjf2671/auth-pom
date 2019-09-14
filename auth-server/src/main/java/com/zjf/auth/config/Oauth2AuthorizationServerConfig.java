@@ -38,8 +38,8 @@ public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigur
      */
     private final AuthenticationManager authenticationManager;
     private final DruidDataSource druidDataSource;
-    private final RedisConnectionFactory redisConnectionFactory;
     private final UserDetailsService userDetailsService;
+    private final TokenStore redisTokenStore;
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 //        clients.inMemory() // 测试用，将客户端信息存储在内存中
@@ -58,7 +58,7 @@ public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigur
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.authenticationManager(authenticationManager)
-                .tokenStore(tokenStore())
+                .tokenStore(redisTokenStore)
                 .tokenEnhancer(tokenEnhancer())
                 .userDetailsService(userDetailsService);
     }
@@ -92,10 +92,4 @@ public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigur
         };
     }
 
-    @Bean
-    public TokenStore tokenStore() {
-        RedisTokenStore tokenStore = new RedisTokenStore(redisConnectionFactory);
-        tokenStore.setPrefix(SecurityConstants.PROJECT_PREFIX + SecurityConstants.OAUTH_PREFIX);
-        return tokenStore;
-    }
 }
