@@ -15,7 +15,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
  * @Date 2019/9/14 22:37
  **/
 @Configuration
-public class JwtTokenConfig {
+public class JwtTokenStoreConfig {
 
     @Bean
     public TokenStore jwtTokenStore(){
@@ -30,15 +30,5 @@ public class JwtTokenConfig {
         return jwtAccessTokenConverter;
 
     }
-
-    @Bean
-    @Primary
-    public DefaultTokenServices tokenServices() {
-        DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
-        defaultTokenServices.setTokenStore(jwtTokenStore());
-        defaultTokenServices.setSupportRefreshToken(true);
-        return defaultTokenServices;
-    }
-
 
 }
