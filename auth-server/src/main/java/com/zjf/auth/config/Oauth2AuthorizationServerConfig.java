@@ -11,7 +11,11 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
+import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+
+import java.util.Arrays;
 
 /**
  * @Description oauth2适配器相关配置
@@ -28,8 +32,9 @@ public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigur
      */
     private final AuthenticationManager authenticationManager;
     private final DruidDataSource druidDataSource;
-    private final TokenStore redisTokenStore;
+    private final TokenStore jwtTokenStore;
     private final TokenEnhancer tokenEnhancer;
+    private final JwtAccessTokenConverter jwtAccessTokenConverter;
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 //        clients.inMemory() // 测试用，将客户端信息存储在内存中
@@ -47,9 +52,15 @@ public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigur
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+        //增强器链
+        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+        tokenEnhancerChain.setTokenEnhancers(
+                Arrays.asList(tokenEnhancer, jwtAccessTokenConverter));
+
         endpoints.authenticationManager(authenticationManager)
-                .tokenStore(redisTokenStore)
-                .tokenEnhancer(tokenEnhancer);
+                .tokenStore(jwtTokenStore)
+                .accessTokenConverter(jwtAccessTokenConverter)
+                .tokenEnhancer(tokenEnhancerChain);
     }
 
 
