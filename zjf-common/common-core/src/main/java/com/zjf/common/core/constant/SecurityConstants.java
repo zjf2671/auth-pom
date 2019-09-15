@@ -22,7 +22,7 @@ public interface SecurityConstants {
 	/***
 	 * 资源服务器默认bean名称
 	 */
-	String RESOURCE_SERVER_CONFIGURER = "oauth2ResourceServerConfigAdapter";
+	String RESOURCE_SERVER_CONFIGURER = "oauth2ResourceServerConfigurerAdapter";
 
 	/**
 	 * 用户ID字段
