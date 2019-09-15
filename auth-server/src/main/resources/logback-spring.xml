@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- scan 配置文件如果发生改变，将会被重新加载  scanPeriod 检测间隔时间 -->
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <springProperty scop="context" name="spring.application.name" source="spring.application.name" defaultValue=""/>
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
-    <!--用于定义model方便日志查找-->
-    <property name="model" value="auth-pom" />
     <!--用于定义业务模块方便日志查找-->
-    <property name="business" value="auth-server" />
-
-    <contextName>${business}</contextName>
+    <property name="business" value="${spring.application.name}" />
 
     <!--日志文件输出目录，没有会自动生成目录-->
     <property name="LOG_PATH" value="logs/${business}" />
@@ -49,7 +46,7 @@
         <append>true</append>
         <!-- 日志文件的格式 -->
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>{"module": "${model}","business":"${business}","logTime": "%date{'yyyy-MM-dd HH:mm:ss.SSS'}","thread": "%thread","logLevel": "%level","className": "%class","logMsg": "%message", "stack_trace": "%exception" }%n</pattern>
+            <pattern>{"business":"${business}","logTime": "%date{'yyyy-MM-dd HH:mm:ss.SSS'}","thread": "%thread","logLevel": "%level","className": "%class","logMsg": "%message", "stack_trace": "%exception" }%n</pattern>
             <charset>utf-8</charset>
         </encoder>
         <!-- 此日志文件只记录error级别的 -->
@@ -80,7 +77,7 @@
         <append>true</append>
         <!-- 日志文件的格式 -->
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>{"module": "${model}","business":"${business}","logTime": "%date{'yyyy-MM-dd HH:mm:ss.SSS'}","thread": "%thread","logLevel": "%level","className": "%class","logMsg": "%message", "stack_trace": "%exception" }%n</pattern>
+            <pattern>{"business":"${business}","logTime": "%date{'yyyy-MM-dd HH:mm:ss.SSS'}","thread": "%thread","logLevel": "%level","className": "%class","logMsg": "%message", "stack_trace": "%exception" }%n</pattern>
             <charset>utf-8</charset>
         </encoder>
         <!-- 此日志文件只记录warn级别的 -->
@@ -111,7 +108,7 @@
         <append>true</append>
         <!-- 日志文件的格式 -->
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>{"module": "${model}","business":"${business}","logTime": "%date{'yyyy-MM-dd HH:mm:ss.SSS'}","thread": "%thread","logLevel": "%level","className": "%class","logMsg": "%message", "stack_trace": "%exception" }%n</pattern>
+            <pattern>{"business":"${business}","logTime": "%date{'yyyy-MM-dd HH:mm:ss.SSS'}","thread": "%thread","logLevel": "%level","className": "%class","logMsg": "%message", "stack_trace": "%exception" }%n</pattern>
             <charset>utf-8</charset>
         </encoder>
         <!-- 此日志文件只记录info级别的 -->
@@ -142,7 +139,7 @@
         <append>true</append>
         <!-- 日志文件的格式 -->
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>{"module": "${model}","business":"${business}","logTime": "%date{'yyyy-MM-dd HH:mm:ss.SSS'}","thread": "%thread","logLevel": "%level","className": "%class","logMsg": "%message", "stack_trace": "%exception" }%n</pattern>
+            <pattern>{"business":"${business}","logTime": "%date{'yyyy-MM-dd HH:mm:ss.SSS'}","thread": "%thread","logLevel": "%level","className": "%class","logMsg": "%message", "stack_trace": "%exception" }%n</pattern>
             <charset>utf-8</charset>
         </encoder>
         <!-- 此日志文件只记录debug级别的 -->
@@ -173,7 +170,7 @@
         <append>true</append>
         <!-- 日志文件的格式 -->
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>{"module": "${model}","business":"${business}","logTime": "%date{'yyyy-MM-dd HH:mm:ss.SSS'}","thread": "%thread","logLevel": "%level","className": "%class","logMsg": "%message", "stack_trace": "%exception" }%n</pattern>
+            <pattern>{"business":"${business}","logTime": "%date{'yyyy-MM-dd HH:mm:ss.SSS'}","thread": "%thread","logLevel": "%level","className": "%class","logMsg": "%message", "stack_trace": "%exception" }%n</pattern>
             <charset>utf-8</charset>
         </encoder>
         <!-- 此日志文件只记录debug级别的 -->
@@ -185,14 +182,20 @@
     </appender>
 
     <logger name="org.springframework" level="INFO" />
+    <logger name="io.swagger.models.parameters.AbstractSerializableParameter" level="error"/>
+    <!-- 剔除心跳日志 -->
+    <!--<logger name="com.netflix.discovery.DiscoveryClient" level="WARN"/>-->
+    <logger name="com.netflix.discovery.shared" level="WARN"/>
+    <logger name="com.netflix.discovery.util" level="WARN"/>
+    <logger name="org.apache.http" level="WARN"/>
 
     <!-- 生产环境下，将此级别配置为适合的级别，以免日志文件太多或影响程序性能 -->
     <root>
         <appender-ref ref="FILEINFO" />
         <appender-ref ref="FILEERROR" />
-        <!--<appender-ref ref="FILEWARN" />
+        <appender-ref ref="FILEWARN" />
         <appender-ref ref="FILEDEBUG" />
-        <appender-ref ref="FILEDTRACE" />-->
+        <appender-ref ref="FILEDTRACE" />
         <!-- 生产环境将请stdout,testfile去掉 -->
         <appender-ref ref="CONSOLE" />
     </root>

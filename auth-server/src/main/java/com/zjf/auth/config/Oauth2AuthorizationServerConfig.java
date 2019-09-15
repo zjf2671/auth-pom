@@ -38,8 +38,8 @@ public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigur
      */
     private final AuthenticationManager authenticationManager;
     private final DruidDataSource druidDataSource;
-    private final UserDetailsService userDetailsService;
     private final TokenStore redisTokenStore;
+    private final TokenEnhancer tokenEnhancer;
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 //        clients.inMemory() // 测试用，将客户端信息存储在内存中
@@ -59,8 +59,7 @@ public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigur
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.authenticationManager(authenticationManager)
                 .tokenStore(redisTokenStore)
-                .tokenEnhancer(tokenEnhancer())
-                .userDetailsService(userDetailsService);
+                .tokenEnhancer(tokenEnhancer);
     }
 
 
@@ -72,24 +71,6 @@ public class Oauth2AuthorizationServerConfig extends AuthorizationServerConfigur
                 //允许所有资源服务器访问公钥端点（/oauth/token_key）
                 //.tokenKeyAccess("permitAll()")
                 .allowFormAuthenticationForClients();
-    }
-
-    /**
-     * 对token内容进行增强
-     * @return
-     */
-    @Bean
-    public TokenEnhancer tokenEnhancer() {
-        return (accessToken, authentication) -> {
-            final Map<String, Object> additionalInfo = new HashMap<>(1);
-            AuthUser authUser = (AuthUser) authentication.getUserAuthentication().getPrincipal();
-            additionalInfo.put(SecurityConstants.DETAILS_LICENSE, SecurityConstants.PROJECT_LICENSE);
-            additionalInfo.put(SecurityConstants.DETAILS_USER_ID, authUser.getId());
-            additionalInfo.put(SecurityConstants.DETAILS_USERNAME, authUser.getUsername());
-            additionalInfo.put(SecurityConstants.DETAILS_DEPT_ID, authUser.getDeptId());
-            ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
-            return accessToken;
-        };
     }
 
 }
