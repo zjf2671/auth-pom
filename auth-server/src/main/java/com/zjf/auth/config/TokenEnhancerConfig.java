@@ -26,12 +26,14 @@ public class TokenEnhancerConfig {
     public TokenEnhancer tokenEnhancer() {
         return (accessToken, authentication) -> {
             final Map<String, Object> additionalInfo = new HashMap<>(1);
-            AuthUser authUser = (AuthUser) authentication.getUserAuthentication().getPrincipal();
-            additionalInfo.put(SecurityConstants.DETAILS_LICENSE, SecurityConstants.PROJECT_LICENSE);
-            additionalInfo.put(SecurityConstants.DETAILS_USER_ID, authUser.getId());
-            additionalInfo.put(SecurityConstants.DETAILS_USERNAME, authUser.getUsername());
-            additionalInfo.put(SecurityConstants.DETAILS_DEPT_ID, authUser.getDeptId());
-            ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
+            if(authentication.getUserAuthentication()!=null){
+                AuthUser authUser = (AuthUser) authentication.getUserAuthentication().getPrincipal();
+                additionalInfo.put(SecurityConstants.DETAILS_LICENSE, SecurityConstants.PROJECT_LICENSE);
+                additionalInfo.put(SecurityConstants.DETAILS_USER_ID, authUser.getId());
+                additionalInfo.put(SecurityConstants.DETAILS_USERNAME, authUser.getUsername());
+                additionalInfo.put(SecurityConstants.DETAILS_DEPT_ID, authUser.getDeptId());
+                ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
+            }
             return accessToken;
         };
     }
