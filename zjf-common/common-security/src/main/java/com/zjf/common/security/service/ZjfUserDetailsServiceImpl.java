@@ -33,7 +33,7 @@ public class ZjfUserDetailsServiceImpl implements UserDetailsService{
         if (StringUtils.isEmpty(username)) {
             throw new UsernameNotFoundException("用户不存在");
         }
-        //todo 从数据库中查找用户信息
+        //todo 从数据库中查找用户信息和相关角色信息
 
         Collection<? extends GrantedAuthority> authorities
                 = AuthorityUtils.createAuthorityList(SecurityConstants.ROLE + "role-1");
