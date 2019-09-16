@@ -1,13 +1,3 @@
-server:
-  port: 8080
-  servlet:
-    context-path: /auth
-spring:
-  application:
-    name: auth-ucenter
-  profiles:
-    active: dev
-
 #mybatis
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
