@@ -6,7 +6,7 @@
 
 ## 实现
 
-- 采用jwt对称加解密试生成token
+- 采用jwt对称加解密方式生成token
 - 支持oauth2四种生成token模式
 
 ## 启动
