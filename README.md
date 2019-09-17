@@ -46,7 +46,7 @@ curl -X POST --user client1:123456 http://localhost:8080/auth/oauth/token -H "ac
 curl -X GET http://localhost:8081/client1/api/user  -H “Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsaWNlbnNlIjoibWFkZSBieSB6amYiLCJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJoYXJyeTEiLCJzY29wZSI6WyJzZXJ2ZXIiXSwiZXhwIjoxNTY4NzQ5NjM5LCJkZXB0X2lkIjoxLCJhdXRob3JpdGllcyI6WyJyb2xlX3JvbGUtMSJdLCJqdGkiOiI4NDNkYmI2NC1jY2M3LTQwNjUtOGI4Yi1iMjNmOWI0YmJiNzQiLCJjbGllbnRfaWQiOiJjbGllbnQxIiwidXNlcm5hbWUiOiJoYXJyeTEifQ.N8fS8IvMlPcCHeWXXRnI3gCX13gDo2tMJfVrSul_Lf4”
 
 
-**响应案例**
+响应案例
 
 ```json
 {
