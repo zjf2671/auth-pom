@@ -19,11 +19,11 @@
 
 ### 1、获取token：
 
-
+请求报文
 curl -X POST --user client1:123456 http://localhost:8080/auth/oauth/token -H "accept: application/json"  -H “Content-Type: application/x-www-form-urlencoded”  -d “grant_type=password&username=harry1&password=123456&scope=server”
 
 
-响应案例
+响应报文
 
 ```json
 {
@@ -42,11 +42,11 @@ curl -X POST --user client1:123456 http://localhost:8080/auth/oauth/token -H "ac
 
 ### 2、访问资源服务api
 
-
+请求报文
 curl -X GET http://localhost:8081/client1/api/user  -H “Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsaWNlbnNlIjoibWFkZSBieSB6amYiLCJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJoYXJyeTEiLCJzY29wZSI6WyJzZXJ2ZXIiXSwiZXhwIjoxNTY4NzQ5NjM5LCJkZXB0X2lkIjoxLCJhdXRob3JpdGllcyI6WyJyb2xlX3JvbGUtMSJdLCJqdGkiOiI4NDNkYmI2NC1jY2M3LTQwNjUtOGI4Yi1iMjNmOWI0YmJiNzQiLCJjbGllbnRfaWQiOiJjbGllbnQxIiwidXNlcm5hbWUiOiJoYXJyeTEifQ.N8fS8IvMlPcCHeWXXRnI3gCX13gDo2tMJfVrSul_Lf4”
 
 
-响应案例
+响应报文
 
 ```json
 {
