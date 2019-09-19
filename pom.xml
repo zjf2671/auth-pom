@@ -16,6 +16,7 @@
 		<spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
 		<security.oauth.version>2.3.6.RELEASE</security.oauth.version>
 		<security-jwt.version>1.0.9.RELEASE</security-jwt.version>
+		<oauth2-autoconfigure.vesion>2.1.4.RELEASE</oauth2-autoconfigure.vesion>
 		<mybatis-plus.version>3.0.6</mybatis-plus.version>
 		<druid.version>1.1.9</druid.version>
 		<mysql.version>5.1.38</mysql.version>
@@ -26,9 +27,15 @@
 	</properties>
 
 	<modules>
+		<!--auth2 相关demo-->
 		<module>auth-server</module>
 		<module>client-server-1</module>
 		<module>zjf-common</module>
+
+		<!--sso auth2相关demo-->
+		<module>sso-auth-server</module>
+		<module>oauth2-sso-ui</module>
+		<module>oauth2-sso-ui2</module>
 	</modules>
 
 	<dependencies>
@@ -68,6 +75,12 @@
 				<groupId>org.springframework.security</groupId>
 				<artifactId>spring-security-jwt</artifactId>
 				<version>${security-jwt.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.security.oauth.boot</groupId>
+				<artifactId>spring-security-oauth2-autoconfigure</artifactId>
+				<version>${oauth2-autoconfigure.vesion}</version>
 			</dependency>
 			<!--核心包-->
 			<dependency>
@@ -119,6 +132,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>2.1.4.RELEASE</version>
 			</plugin>
 		</plugins>
 	</build>

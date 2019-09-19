@@ -1,0 +1,9 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /ssoauth
+spring:
+  application:
+    name: sso-auth
+  profiles:
+    active: dev
