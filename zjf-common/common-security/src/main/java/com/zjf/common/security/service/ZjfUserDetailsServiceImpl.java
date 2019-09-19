@@ -36,7 +36,7 @@ public class ZjfUserDetailsServiceImpl implements UserDetailsService{
         //todo 从数据库中查找用户信息和相关角色信息
 
         Collection<? extends GrantedAuthority> authorities
-                = AuthorityUtils.createAuthorityList(SecurityConstants.ROLE + "role-1");
+                = AuthorityUtils.createAuthorityList(SecurityConstants.ROLE + "role-1",SecurityConstants.ROLE + "role-2");
 
         // 构造security用户
         return new AuthUser(1, 1, username, new BCryptPasswordEncoder().encode("123456"),
