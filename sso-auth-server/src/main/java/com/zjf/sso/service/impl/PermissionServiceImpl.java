@@ -1,8 +1,7 @@
 package com.zjf.sso.service.impl;
 
-import com.zjf.sso.dao.SysPermissionRepository;
-import com.zjf.sso.dao.SysRolePermissionRepository;
-import com.zjf.sso.dao.SysUserRoleRepository;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.zjf.sso.dao.*;
 import com.zjf.sso.entity.SysPermission;
 import com.zjf.sso.entity.SysRolePermission;
 import com.zjf.sso.entity.SysUserRole;
@@ -10,6 +9,7 @@ import com.zjf.sso.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,29 +20,27 @@ import java.util.stream.Collectors;
 @Service
 public class PermissionServiceImpl implements PermissionService {
 
-    /**
-     * 偷懒少写两个Service
-     */
     @Autowired
-    private SysUserRoleRepository sysUserRoleRepository;
+    private SysUserRoleDao sysUserRoleDao;
     @Autowired
-    private SysRolePermissionRepository sysRolePermissionRepository;
+    private SysRolePermissionDao sysRolePermissionDao;
     @Autowired
-    private SysPermissionRepository sysPermissionRepository;
+    private SysPermissionDao sysPermissionDao;
 
     @Override
     public List<SysPermission> findByUserId(Integer userId) {
-        List<SysUserRole> sysUserRoleList = sysUserRoleRepository.findByUserId(userId);
+        List<SysUserRole> sysUserRoleList = sysUserRoleDao.selectList(new QueryWrapper<SysUserRole>().eq("user_id", userId));
         if (CollectionUtils.isEmpty(sysUserRoleList)) {
             return null;
         }
         List<Integer> roleIdList = sysUserRoleList.stream().map(SysUserRole::getRoleId).collect(Collectors.toList());
-        List<SysRolePermission> rolePermissionList = sysRolePermissionRepository.findByRoleIds(roleIdList);
+        List<SysRolePermission> rolePermissionList = sysRolePermissionDao
+                .selectList(new QueryWrapper<SysRolePermission>().in(StringUtils.isEmpty(roleIdList),"role_id", roleIdList));
         if (CollectionUtils.isEmpty(rolePermissionList)) {
             return null;
         }
         List<Integer> permissionIdList = rolePermissionList.stream().map(SysRolePermission::getPermissionId).distinct().collect(Collectors.toList());
-        List<SysPermission> sysPermissionList = sysPermissionRepository.findByIds(permissionIdList);
+        List<SysPermission> sysPermissionList = sysPermissionDao.selectBatchIds(permissionIdList);
         if (CollectionUtils.isEmpty(sysPermissionList)) {
             return null;
         }

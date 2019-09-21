@@ -10,6 +10,10 @@ import java.util.List;
  */
 public interface PermissionService {
 
+    /**
+     * @param userId
+     * @return
+     */
     List<SysPermission> findByUserId(Integer userId);
 
 }

@@ -8,5 +8,9 @@ import com.zjf.sso.entity.SysUser;
  */
 public interface UserService {
 
+    /**
+     * @param username
+     * @return
+     */
     SysUser getByUsername(String username);
 }
