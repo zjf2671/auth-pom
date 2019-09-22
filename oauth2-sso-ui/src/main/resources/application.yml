@@ -1,3 +1,4 @@
+auth-server: http://localhost:8082/ssoauth # sso-server地址
 server:
   port: 8083
   servlet:
@@ -7,8 +8,8 @@ security:
     client:
       client-id: UserManagement
       client-secret: user123
-      access-token-uri: http://localhost:8082/ssoauth/oauth/token
-      user-authorization-uri: http://localhost:8082/ssoauth/oauth/authorize
+      user-authorization-uri: ${auth-server}/oauth/authorize #请求认证地址
+      access-token-uri: ${auth-server}/oauth/token #请求令牌地址
     resource:
       jwt:
-        key-uri: http://localhost:8082/ssoauth/oauth/token_key
+        key-uri: ${auth-server}/oauth/token_key #解析jwt令牌所需要密钥地址
