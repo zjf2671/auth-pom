@@ -23,4 +23,8 @@ public class EnvironmentUtils implements EnvironmentAware {
         }
         return environment.getDefaultProfiles()[0];
     }
+    public String getProperty(String key){
+        return environment.getProperty(key);
+    }
+
 }

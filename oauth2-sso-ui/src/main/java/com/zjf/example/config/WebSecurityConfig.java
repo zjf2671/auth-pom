@@ -29,7 +29,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         if ("local".equals(environmentUtils.getActiveProfile())) {
             http.authorizeRequests().anyRequest().permitAll();
         }else {
-            http.logout().logoutSuccessUrl("http://localhost:8082/ssoauth/logout")
+            http.logout()
+                    .logoutSuccessUrl(environmentUtils.getProperty("sso-auth-server")+"/logout")
                     .and()
                     .authorizeRequests()
                     .anyRequest().authenticated()

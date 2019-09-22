@@ -1,8 +1,13 @@
 sso-auth-server: http://localhost:8082/ssoauth # sso-server地址
+
+
 server:
   port: 8084
   servlet:
     context-path: /orderSystem
+spring:
+  profiles:
+    active: dev
 security:
   oauth2:
     client:

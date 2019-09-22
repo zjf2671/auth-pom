@@ -3,6 +3,9 @@ server:
   port: 8083
   servlet:
     context-path: /memberSystem
+spring:
+  profiles:
+    active: dev
 security:
   oauth2:
     client:
