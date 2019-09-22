@@ -1,4 +1,4 @@
-auth-server: http://localhost:8082/ssoauth # sso-server地址
+sso-auth-server: http://localhost:8082/ssoauth # sso-server地址
 server:
   port: 8084
   servlet:
@@ -8,8 +8,8 @@ security:
     client:
       client-id: OrderManagement
       client-secret: order123
-      user-authorization-uri: ${auth-server}/oauth/authorize
-      access-token-uri: ${auth-server}/oauth/token
+      user-authorization-uri: ${sso-auth-server}/oauth/authorize
+      access-token-uri: ${sso-auth-server}/oauth/token
     resource:
       jwt:
-        key-uri: ${auth-server}/oauth/token_key
+        key-uri: ${sso-auth-server}/oauth/token_key
