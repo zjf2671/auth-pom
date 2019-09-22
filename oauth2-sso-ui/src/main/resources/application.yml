@@ -6,6 +6,8 @@ server:
 spring:
   profiles:
     active: dev
+  application:
+    name: sso-ui
 security:
   oauth2:
     client:
