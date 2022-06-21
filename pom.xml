@@ -19,7 +19,7 @@
 		<oauth2-autoconfigure.vesion>2.1.4.RELEASE</oauth2-autoconfigure.vesion>
 		<mybatis-plus.version>3.0.6</mybatis-plus.version>
 		<druid.version>1.1.9</druid.version>
-		<mysql.version>5.1.38</mysql.version>
+		<mysql.version>8.0.28</mysql.version>
 		<fastjson.version>1.2.47</fastjson.version>
 		<hutool.version>4.6.3</hutool.version>
 		<common-security.version>0.0.1-SNAPSHOT</common-security.version>
